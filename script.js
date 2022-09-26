@@ -13,9 +13,16 @@ function generatePassword() {
   ));
 
   //Checking if the user inputs the correct password length
-  if (!passwordLength >= 8 && !passwordLength <= 128){
-    alert("Please enter a password between 8 to 128 characters.");
+  if (passwordLength <= 7){
+    alert("Please enter a length of 8 or higher");
   }
+  if (passwordLength >= 129){
+    alert("Please enter a length of 128 or less");
+  }
+
+  // if (!passwordLength >= 8 && !passwordLength <= 128){
+  //   alert("Please enter a password between 8 to 128 characters.");
+  // }
 
   // Confirm if the user wants to include lowercaseLetters
   var confirmedLower = window.confirm(
