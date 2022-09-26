@@ -1,22 +1,34 @@
+
+
+
+
+
 function generatePassword() {
+  var lowercaseLetters = "abcdefghijklmnopqrstuvwxyz";
+  var uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var numericCharacters = "0123456789";
+  var specialCharacters = ",.!@#$%^&*";
 
-  var lowercaseLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-  var uppercaseLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-  var numericCharacters = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-  var specialCharacters = ',.!@#$%^&*';
-
+  var password = " ";
   
+  // Prompt for the password length
+  var passwordLength = parseInt(prompt(
+    "Choose your password length to be between 8 to 128 characters:"
+  ));
+
+  //Create the random password based on the password length
+  for (var i = 0; i < passwordLength; i++){
+    password += lowercaseLetters.charAt(Math.floor(Math.random() * lowercaseLetters.length));
+  }
   
 
   //Checking if the user inputs the correct password length
-  if (!passwordLength >= 8 || !passwordLength <= 128) {
+  if (!passwordLength >= 8 && !passwordLength <= 128) {
     alert("Please enter a password between 8 to 128 characters.");
   }
-
-  //Create the random password based on the password length
-  for (var i = 0; i<=passwordLength; i++){
-    Math.floor(Math.random() * password);
-  }
+  console.log("This is the passwordLength: " + passwordLength);
+  
+  
 
 
   return password;
