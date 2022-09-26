@@ -41,7 +41,7 @@ function generatePassword() {
    //Move on to the next password option if Cancel
    //User selects no for UpperCase Letters
    if(confirmedLower == true && confirmedUpper!= true){
-    alert("Okay, moving on to other options.");
+    alert("You selected 'No' to including Uppercase letters.\n Let's move on to the other options.");
     confirmedList = lowercaseLetters;
     }
     //User selects Okay for Upper and Lowercase letters
@@ -54,8 +54,8 @@ function generatePassword() {
     "Would you like to include numeric numbers?\nSelect the 'Okay' button if YES\nSelect the 'Cancel' button if NO"
   );
   
-  //Move on to the next password option if Cancel
-  //User only selects No for Numeric Option, No for Upper Case Option, Yes for Lower case
+  
+  //User selects Yes for Lower case, No for Upper case, No for Numeric number
   if(confirmedLower == true && confirmedUpper!= true && confirmedNumeric!= true){
     alert("You selected 'No' to including Numeric numbers.\n Let's move on to the other options.");
     confirmedList = lowercaseLetters;
@@ -65,11 +65,13 @@ function generatePassword() {
     alert("You selected 'Yes' to including Numeric numbers.\n Let's move on to the other options.");
     confirmedList = uppercaseLetters + numericCharacters;
     }
-  //User only selects the Numeric option, No for Lower, No for Upper
+  //User selects No for Lower, No for Upper, Yes to Numeric
   else if (confirmedLower != true && confirmedUpper != true && confirmedNumeric == true) {
     alert("You selected 'Yes' to including Numeric numbers.\n Let's move on to the other options.");
     confirmedList = numericCharacters;
-    } else {
+    } 
+  //User selects Yes for Lower, Yes for Upper, Yes to Numeric
+  else {
     alert("You selected 'Yes' to including Numeric numbers.\n Let's move on to the other options.");
     confirmedList = lowercaseLetters + uppercaseLetters + numericCharacters;
     } 
@@ -79,14 +81,29 @@ function generatePassword() {
    var confirmedCharacters = window.confirm(
     "Would you like to include special characters?\nSelect the 'Okay' button if YES\nSelect the 'Cancel' button if NO"
   );
-  //Move on to the next password option if Cancel
-  if(confirmedCharacters!= true){
-    alert("Okay, moving on to other options.");
+  //User selects No for Lower case, No for Upper Case, No for Numeric Option, Yes for Special Character
+  if(confirmedLower != true && confirmedUpper != true && confirmedNumeric != true && confirmedCharacters == true){
+    alert("You selected 'Yes' to including Special characters.\n Let's get your password generated");
+    confirmedList =  specialCharacters;
     }
-    else{
+  //User selects No for Lower case, No for Upper Case, Yes for Numeric Option, Yes for Special Character
+  else if(confirmedLower != true && confirmedUpper != true && confirmedNumeric == true && confirmedCharacters == true){
+    alert("You selected 'Yes' to including Special characters.\n Let's get your password generated");
+    confirmedList = numericCharacters + specialCharacters;
+  }
+  //User selects No for Lower case, Yes for Upper Case, Yes for Numeric Option, Yes for Special Character
+  else if(confirmedLower != true && confirmedUpper == true && confirmedNumeric == true && confirmedCharacters == true){
+    confirmedList = uppercaseLetters + numericCharacters + specialCharacters;
+  }
+   //User selects Yes for Lower case, Yes for Upper Case, Yes for Numeric Option, No for Special Character
+   else if(confirmedLower == true && confirmedUpper == true && confirmedNumeric == true && confirmedCharacters != true){
+    alert("You selected 'No' to including Special characters.\n Let's get your password generated");
+    confirmedList = lowercaseLetters + uppercaseLetters + numericCharacters;
+  }
+  else{
+      alert("You selected 'Yes' to including Special characters.\n Let's get your password generated");
       confirmedList = lowercaseLetters + uppercaseLetters + numericCharacters + specialCharacters;
     }
-
 
 
   //Create the random password based on the password length
@@ -95,8 +112,6 @@ function generatePassword() {
    
   }
   
-
-
   return password;
 }
 
@@ -113,11 +128,3 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-//Only lowercase
-//lowercase + uppercase
-//only uppercase
-//only numbers
-//lowercase + uppercase + numbers
-//only special characters
-//only lowercase + uppercase + numbers + special characters
