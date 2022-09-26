@@ -12,17 +12,25 @@ function generatePassword() {
     "Choose your password length to be between 8 to 128 characters:"
   ));
 
-  //Checking if the user inputs the correct password length
+  //Checking if the user inputs less than 8 as the password length
   if (passwordLength <= 7){
     alert("Please enter a length of 8 or higher");
   }
+   // Re-Prompt for the password length
+   var passwordLength = parseInt(prompt(
+    "Choose your password length to be between 8 to 128 characters:"
+  ));
+
+//Checking if the user inputs more than 128 as the correct password length
   if (passwordLength >= 129){
     alert("Please enter a length of 128 or less");
   }
+ // Re-Prompt for the password length
+ var passwordLength = parseInt(prompt(
+  "Choose your password length to be between 8 to 128 characters:"
+));
 
-  // if (!passwordLength >= 8 && !passwordLength <= 128){
-  //   alert("Please enter a password between 8 to 128 characters.");
-  // }
+ 
 
   // Confirm if the user wants to include lowercaseLetters
   var confirmedLower = window.confirm(
