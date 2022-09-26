@@ -19,28 +19,30 @@ function generatePassword() {
 
   // Confirm if the user wants to include lowercaseLetters
   var confirmedLower = window.confirm(
-    "Would you like to include lowercase letters?\nSelect the 'Okay' button if YES"
+    "Would you like to include lowercase letters?\nSelect the 'Okay' button if YES\nSelect the 'Cancel' button if NO"
   );
 
   //Move on to the next password option if Cancel
   if(confirmedLower != true){
-    alert("Okay, moving on to other options");
+    alert("You selected 'No' to including Lowercase letters.\n Let's move on to the other options.");
     confirmedList != lowercaseLetters;
     }
     //User selected okay for the lower case letter
     else{
+      alert("You selected 'YES' to including Lowercase letters.\n Let's move on to the other options.");
       confirmedList = lowercaseLetters;
     }
   
   //Do you want to include uppercase?
   var confirmedUpper = window.confirm(
-    "Would you like to include uppercase letters?\nSelect the 'Okay' button if YES"
+    "Would you like to include uppercase letters?\nSelect the 'Okay' button if YES\nSelect the 'Cancel' button if NO"
   );
 
    //Move on to the next password option if Cancel
    //User selects no for UpperCase Letters
-   if(confirmedUpper!= true){
+   if(confirmedLower == true && confirmedUpper!= true){
     alert("Okay, moving on to other options.");
+    confirmedList = lowercaseLetters;
     }
     //User selects Okay for Upper and Lowercase letters
     else{
@@ -49,19 +51,33 @@ function generatePassword() {
 
   //Do you want to include numeric numbers?
   var confirmedNumeric = window.confirm(
-    "Would you like to include numeric numbers?\nSelect the 'Okay' button if YES"
+    "Would you like to include numeric numbers?\nSelect the 'Okay' button if YES\nSelect the 'Cancel' button if NO"
   );
+  
   //Move on to the next password option if Cancel
-  if(confirmedNumeric!= true){
-    alert("Okay, moving on to other options.");
+  //User only selects No for Numeric Option, No for Upper Case Option, Yes for Lower case
+  if(confirmedLower == true && confirmedUpper!= true && confirmedNumeric!= true){
+    alert("You selected 'No' to including Numeric numbers.\n Let's move on to the other options.");
+    confirmedList = lowercaseLetters;
     }
-    else{
-      confirmedList = lowercaseLetters + uppercaseLetters + numericCharacters;
+  //No for Lower case, Yes to Upper ,Yes to Numeric
+  else if (confirmedLower != true && confirmedUpper == true && confirmedNumeric == true) {
+    alert("You selected 'Yes' to including Numeric numbers.\n Let's move on to the other options.");
+    confirmedList = uppercaseLetters + numericCharacters;
     }
+  //User only selects the Numeric option, No for Lower, No for Upper
+  else if (confirmedLower != true && confirmedUpper != true && confirmedNumeric == true) {
+    alert("You selected 'Yes' to including Numeric numbers.\n Let's move on to the other options.");
+    confirmedList = numericCharacters;
+    } else {
+    alert("You selected 'Yes' to including Numeric numbers.\n Let's move on to the other options.");
+    confirmedList = lowercaseLetters + uppercaseLetters + numericCharacters;
+    } 
+   
 
-   //Do you want to include numeric numbers?
+   //Do you want to include Special Characters?
    var confirmedCharacters = window.confirm(
-    "Would you like to include special characters?\nSelect the 'Okay' button if YES"
+    "Would you like to include special characters?\nSelect the 'Okay' button if YES\nSelect the 'Cancel' button if NO"
   );
   //Move on to the next password option if Cancel
   if(confirmedCharacters!= true){
