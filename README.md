@@ -1,7 +1,9 @@
 # Random JavaScript Password Generator
 ## Summary
 ```
-A marketing agency, The Horiseon Company has a security concern of weak passwords.  They have hired me to create an application that enables employees to generate random passwords based on criteria that they’ve selected.  The new password implements greater security to sensitive data and saves time for users.
+A marketing agency, The Horiseon Company has a security concern of weak passwords.  
+They have hired me to create an application that enables employees to generate random passwords based on criteria that they’ve selected.  
+The new password implements greater security to sensitive data and saves time for users.
 
 The password criteria must have at least one of the following character types:
 * lowercase characters
