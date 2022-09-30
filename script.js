@@ -14,23 +14,15 @@ function generatePassword() {
 
   //Checking if the user inputs less than 8 as the password length
   if (passwordLength <= 7){
-    alert("Please enter a length of 8 or higher");
+    alert("Try again.  Please enter a length of 8 or higher");
+    return;
   }
-   // Re-Prompt for the password length
-   var passwordLength = parseInt(prompt(
-    "Choose your password length to be between 8 to 128 characters:"
-  ));
 
 //Checking if the user inputs more than 128 as the correct password length
   if (passwordLength >= 129){
-    alert("Please enter a length of 128 or less");
+    alert("Try again.  Please enter a length of 128 or less");
+    return;
   }
- // Re-Prompt for the password length
- var passwordLength = parseInt(prompt(
-  "Choose your password length to be between 8 to 128 characters:"
-));
-
- 
 
   // Confirm if the user wants to include lowercaseLetters
   var confirmedLower = window.confirm(
@@ -45,7 +37,7 @@ function generatePassword() {
     //User selected okay for the lower case letter
     else{
       alert("You selected 'YES' to including Lowercase letters.\n Let's move on to the other options.");
-      confirmedList = lowercaseLetters;
+      confirmedList = confirmedList.concat(lowercaseLetters);
     }
   
   //Do you want to include uppercase?
@@ -55,13 +47,12 @@ function generatePassword() {
 
    //Move on to the next password option if Cancel
    //User selects no for UpperCase Letters
-   if(confirmedLower == true && confirmedUpper!= true){
+   if(confirmedUpper!= true){
     alert("You selected 'No' to including Uppercase letters.\n Let's move on to the other options.");
-    confirmedList = lowercaseLetters;
     }
-    //User selects Okay for Upper and Lowercase letters
+    //User selects Okay for Upper and Lowercase letters, Upper gets added to the confirmed list
     else{
-      confirmedList = lowercaseLetters + uppercaseLetters;
+      confirmedList = confirmedList.concat(uppercaseLetters);
     }
 
   //Do you want to include numeric numbers?
@@ -71,24 +62,12 @@ function generatePassword() {
   
   
   //User selects Yes for Lower case, No for Upper case, No for Numeric number
-  if(confirmedLower == true && confirmedUpper!= true && confirmedNumeric!= true){
+  if(confirmedNumeric!= true){
     alert("You selected 'No' to including Numeric numbers.\n Let's move on to the other options.");
-    confirmedList = lowercaseLetters;
     }
-  //No for Lower case, Yes to Upper ,Yes to Numeric
-  else if (confirmedLower != true && confirmedUpper == true && confirmedNumeric == true) {
-    alert("You selected 'Yes' to including Numeric numbers.\n Let's move on to the other options.");
-    confirmedList = uppercaseLetters + numericCharacters;
-    }
-  //User selects No for Lower, No for Upper, Yes to Numeric
-  else if (confirmedLower != true && confirmedUpper != true && confirmedNumeric == true) {
-    alert("You selected 'Yes' to including Numeric numbers.\n Let's move on to the other options.");
-    confirmedList = numericCharacters;
-    } 
-  //User selects Yes for Lower, Yes for Upper, Yes to Numeric
   else {
     alert("You selected 'Yes' to including Numeric numbers.\n Let's move on to the other options.");
-    confirmedList = lowercaseLetters + uppercaseLetters + numericCharacters;
+    confirmedList = confirmedList.concat(numericCharacters);
     } 
    
 
@@ -96,30 +75,15 @@ function generatePassword() {
    var confirmedCharacters = window.confirm(
     "Would you like to include special characters?\nSelect the 'Okay' button if YES\nSelect the 'Cancel' button if NO"
   );
-  //User selects No for Lower case, No for Upper Case, No for Numeric Option, Yes for Special Character
-  if(confirmedLower != true && confirmedUpper != true && confirmedNumeric != true && confirmedCharacters == true){
-    alert("You selected 'Yes' to including Special characters.\n Let's get your password generated");
-    confirmedList =  specialCharacters;
-    }
-  //User selects No for Lower case, No for Upper Case, Yes for Numeric Option, Yes for Special Character
-  else if(confirmedLower != true && confirmedUpper != true && confirmedNumeric == true && confirmedCharacters == true){
-    alert("You selected 'Yes' to including Special characters.\n Let's get your password generated");
-    confirmedList = numericCharacters + specialCharacters;
-  }
-  //User selects No for Lower case, Yes for Upper Case, Yes for Numeric Option, Yes for Special Character
-  else if(confirmedLower != true && confirmedUpper == true && confirmedNumeric == true && confirmedCharacters == true){
+   //User selects No for Special Character
+  if(confirmedCharacters != true){
     confirmedList = uppercaseLetters + numericCharacters + specialCharacters;
   }
-   //User selects Yes for Lower case, Yes for Upper Case, Yes for Numeric Option, No for Special Character
-   else if(confirmedLower == true && confirmedUpper == true && confirmedNumeric == true && confirmedCharacters != true){
-    alert("You selected 'No' to including Special characters.\n Let's get your password generated");
-    confirmedList = lowercaseLetters + uppercaseLetters + numericCharacters;
+  //User selects Yes for Special Character
+  else if(confirmedCharacters == true){
+    alert("You selected 'Yes' to including Special characters.\n Let's get your password generated");
+    confirmedList = confirmedList.concat(specialCharacters);
   }
-  else{
-      alert("You selected 'Yes' to including Special characters.\n Let's get your password generated");
-      confirmedList = lowercaseLetters + uppercaseLetters + numericCharacters + specialCharacters;
-    }
-
 
   //Create the random password based on the password length
   for (var i = 0; i < passwordLength; i++){
